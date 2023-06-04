@@ -22,3 +22,6 @@ yarn install
 yarn dev
 ```
 
+## Nasıl Çalışır
+
+Proje 3000 portu üzerinden çalışıyor. Dolu ise 3001 üzerinden devam eder. Ordan kontrol edebilirsiniz. Proje başlangıcında `store` klasöründeki store projeye entegre olur. Burada varsayılan olarak `usd` baz alınmıştır ve ilk `currency/fetch/all-currencies` fonksiyonu çalışır. Bu fonksiyon ile tüm para birimlerinin açıklamaları çekilir ve `store`'a kaydedilir. Daha sonra `currency/fetch/exchange-rate` fonksiyonu çalışır ve tüm para birimlerinin döviz kurları çekilir ve `store`'a kaydedilir. Fakat bu fonksiyon her dakika güncelleneceği için her dakika çağıralacak şekilde bir `setInterval` hookundan tekrar çağırılır. Bu işlemler tamamlandıktan sonra `store`'daki `currency` state'i güncellenir. Bu tamamlandıktan sonra eski verilerin ramde yer kaplamaması için `fetchCount` ismindeki değişkenin sayısı baz alınarak 2 önce çekilmiş tüm veriler silinir. Çekilen veriler `Table` componentinde tarafından ekrana bastırılır ve bastırılırken koşullu olarak sınıf eklenir. (Arkası beyaz mı, yeşil mi yoksa kırmızı mı olacak)
