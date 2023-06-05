@@ -1,5 +1,10 @@
 import { createStoreon, StoreonModule } from 'storeon';
-import { ECurrencySymbols, IStoreEvents, IStoreState, TRates } from './interface';
+import {
+  ECurrencySymbols,
+  IStoreEvents,
+  IStoreState,
+  TRates,
+} from './interface';
 
 const INITIAL_STATE: IStoreState = {
   /**
@@ -64,6 +69,7 @@ const counterModule: StoreonModule<IStoreState, IStoreEvents> = (store) => {
   store.on('currency/fetch/all-currencies', async () => {
     const response = await fetch(
       'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json',
+      { cache: 'no-cache' },
     );
 
     const translates = await response.json();
@@ -81,6 +87,7 @@ const counterModule: StoreonModule<IStoreState, IStoreEvents> = (store) => {
       .map((currency) => {
         fetch(
           `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${selected}/${currency}.json`,
+          { cache: 'no-cache' },
         )
           .then((res) => res.json())
           .then((res) => {
@@ -90,7 +97,7 @@ const counterModule: StoreonModule<IStoreState, IStoreEvents> = (store) => {
               currency,
               fetchCount,
               symbol: ECurrencySymbols[currency],
-              prefix: currency === 'try'
+              prefix: currency === 'try',
             };
             store.dispatch('currency/set/rates', data);
           });
