@@ -1,5 +1,5 @@
 import { createStoreon, StoreonModule } from 'storeon';
-import { IStoreEvents, IStoreState, TRates } from './interface';
+import { ECurrencySymbols, IStoreEvents, IStoreState, TRates } from './interface';
 
 const INITIAL_STATE: IStoreState = {
   /**
@@ -89,6 +89,8 @@ const counterModule: StoreonModule<IStoreState, IStoreEvents> = (store) => {
               rate: res[currency] as number,
               currency,
               fetchCount,
+              symbol: ECurrencySymbols[currency],
+              prefix: currency === 'try'
             };
             store.dispatch('currency/set/rates', data);
           });

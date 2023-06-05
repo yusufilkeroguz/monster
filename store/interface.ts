@@ -4,6 +4,15 @@
  */
 export type TCurrencies = 'usd' | 'try' | 'eur' | 'gbp' | 'jpy' | 'cny';
 
+export enum ECurrencySymbols {
+  usd = '$',
+  try = '₺',
+  eur = '€',
+  gbp = '£',
+  jpy = '¥',
+  cny = '¥',
+}
+
 export type TTranslates = {
   [key in TCurrencies]: string;
 };
@@ -13,6 +22,8 @@ export type TRates = {
   rate: number;
   currency: TCurrencies;
   fetchCount: number;
+  symbol: string;
+  prefix: boolean;
 };
 
 /**

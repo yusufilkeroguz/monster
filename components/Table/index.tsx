@@ -29,7 +29,9 @@ export const Table = () => {
               : 'bg-transparent',
           )}
         >
-          {rate?.rate}
+          {!rate?.prefix ? rate?.symbol : ''}
+          {rate?.rate.toFixed(2)}
+          {rate?.prefix ? rate?.symbol : ''}
         </td>
       </Fragment>
     );
