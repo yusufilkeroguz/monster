@@ -32,7 +32,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setFetchCount((prevCount) => prevCount + 1);
-    }, 1000 * 5); // 1 minute
+    }, 1000 * 60); // 1 minute
     return () => clearInterval(interval);
   }, []);
 
